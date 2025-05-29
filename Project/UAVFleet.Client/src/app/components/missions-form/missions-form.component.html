@@ -1,0 +1,100 @@
+<form class="shared-form" [formGroup]="form" (ngSubmit)="submit()">
+  <!-- Групова грешка за поредността на датите -->
+  <div *ngIf="form.hasError('endBeforeStart')" class="error mb-4">
+    Крайната дата/час трябва да е след началната!
+  </div>
+
+  <!-- Drone -->
+  <div class="form-group">
+    <label for="droneId">Drone</label>
+    <select id="droneId" formControlName="droneId">
+      <option value="">— Select drone —</option>
+      <option *ngFor="let d of drones" [value]="d.droneId">
+        {{ d.serialNumber }}
+      </option>
+    </select>
+    <small *ngIf="form.get('droneId')?.hasError('required') && form.get('droneId')?.touched">
+      Required
+    </small>
+  </div>
+
+  <!-- Operator -->
+  <div class="form-group">
+    <label for="operatorId">Operator</label>
+    <select id="operatorId" formControlName="operatorId">
+      <option value="">— Select operator —</option>
+      <option *ngFor="let o of operators" [value]="o.operatorId">
+        {{ o.firstName }} {{ o.lastName }}
+      </option>
+    </select>
+    <small *ngIf="form.get('operatorId')?.hasError('required') && form.get('operatorId')?.touched">
+      Required
+    </small>
+  </div>
+
+  <!-- Start Time -->
+  <div class="form-group">
+    <label for="startTime">Start Time</label>
+    <input id="startTime" type="datetime-local" formControlName="startTime" />
+    <small *ngIf="form.get('startTime')?.hasError('required') && form.get('startTime')?.touched">
+      Required
+    </small>
+  </div>
+
+  <!-- End Time -->
+  <div class="form-group">
+    <label for="endTime">End Time</label>
+    <input id="endTime" type="datetime-local" formControlName="endTime" />
+    <small *ngIf="form.get('endTime')?.hasError('required') && form.get('endTime')?.touched">
+      Required
+    </small>
+  </div>
+
+  <!-- Objective -->
+  <div class="form-group">
+    <label for="objective">Objective</label>
+    <textarea
+      id="objective"
+      formControlName="objective"
+      rows="3"
+      placeholder="Describe mission objective">
+    </textarea>
+    <small *ngIf="form.get('objective')?.hasError('required') && form.get('objective')?.touched">
+      Required
+    </small>
+    <small *ngIf="form.get('objective')?.hasError('maxlength') && form.get('objective')?.touched">
+      Max 500 chars
+    </small>
+  </div>
+
+  <!-- Result -->
+  <div class="form-group">
+    <label for="result">Result</label>
+    <select id="result" formControlName="result">
+      <option value="">— Select result —</option>
+      <option value="planned">Planned</option>
+      <option value="completed">Completed</option>
+      <option value="failed">Failed</option>
+    </select>
+    <small *ngIf="form.get('result')?.hasError('required') && form.get('result')?.touched">
+      Required
+    </small>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button type="submit"
+            class="submit"
+            [disabled]="form.invalid || loading">
+      {{ id ? 'Update' : 'Create' }}
+    </button>
+    <button type="button"
+            class="cancel"
+            (click)="cancel()"
+            [disabled]="loading">
+      Cancel
+    </button>
+  </div>
+
+  <small *ngIf="loading" class="loading">Saving…</small>
+</form>

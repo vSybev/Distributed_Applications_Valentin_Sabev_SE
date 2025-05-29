@@ -1,0 +1,43 @@
+@use 'variables' as var;
+
+.main-nav {
+  background: var.c('header-bg');
+  border-bottom: 1px solid var.c('border');
+  padding: var.$gap;
+  display: flex;
+  align-items: center;
+  gap: var.$gap;
+
+  a {
+    text-decoration: none;
+    color: var.c('text');
+    padding: var.$gap / 2 var.$gap;
+    border-radius: var.$radius;
+    transition: background 0.2s, color 0.2s;
+
+    &.active {
+      background: var.c('primary');
+      color: var.c('text');
+    }
+
+    &:hover {
+      background: var.c('primary-hover');
+      color: var.c('text');
+    }
+  }
+
+  .theme-toggle,
+  .logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    font-size: 1.25rem;
+    color: var.c('icon');
+    transition: color 0.2s;
+
+    &:hover {
+      color: var.c('primary-hover');
+    }
+  }
+}

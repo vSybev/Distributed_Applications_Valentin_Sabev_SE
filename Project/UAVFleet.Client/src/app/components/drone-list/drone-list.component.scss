@@ -1,0 +1,154 @@
+@use 'variables' as var;
+@use 'mixins' as mixins;
+@use 'shared';
+
+:host {
+  display: block;
+  max-width: 900px;
+  margin: var.$gap auto;
+  background: var.c('bg');
+  color: var.c('text');
+
+  .card {
+    @include mixins.card();
+    background: var.c('surface-alt');
+  }
+
+  .card-header {
+    background: var.c('surface-alt');
+    color: var.c('text');
+    padding: var.$gap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var.c('text');
+    }
+
+    button {
+      margin-left: var.$gap;
+      @include mixins.btn(var.c('primary'), var.c('primary-hover'));
+    }
+  }
+
+  .card-body {
+    background: var.c('bg');
+    padding: 0;
+
+    .filter-bar {
+      @include mixins.card();
+      background: var.c('surface-alt');
+      padding: var.$gap;
+      margin-bottom: var.$gap;
+      display: flex;
+      gap: var.$gap;
+
+      input, select {
+        padding: var.$gap / 2;
+        border: 1px solid var.c('border');
+        border-radius: var.$radius;
+        background: var.c('field-bg');
+        color: var.c('text');
+      }
+    }
+
+    table {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto var.$gap;
+      border-collapse: collapse;
+      background: var.c('bg');
+      color: var.c('text');
+
+      th, td {
+        border: 1px solid var.c('border');
+        padding: var.$gap / 2;
+        text-align: left;
+      }
+
+      th {
+        background: var.c('surface-alt');
+        font-weight: 600;
+      }
+
+      tr:nth-child(even) {
+        background: var.c('bg');
+      }
+
+      tbody tr:hover {
+        background: var.c('alt');
+        color: var.c('text');
+      }
+    }
+
+    .card-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: var.$gap;
+      margin: 0 auto var.$gap;
+      max-width: 800px;
+
+      .card-item {
+        @include mixins.card();
+        background: var.c('alt');
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: var.c('text');
+
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: var.$radius;
+          margin-bottom: var.$gap;
+        }
+
+        .title {
+          font-size: 1.25rem;
+          font-weight: 600;
+          margin-bottom: var.$gap / 2;
+        }
+
+        .subtitle {
+          font-size: 1rem;
+          color: var.c('text-secondary');
+          margin-bottom: var.$gap;
+        }
+
+        .actions {
+          margin-top: auto;
+          display: flex;
+          gap: var.$gap / 2;
+
+          a, button {
+            flex: 1;
+            background: transparent;
+            color: var.c('text');
+            border: 1px solid var.c('border');
+          }
+
+          .btn-danger {
+            @include mixins.btn(var.c('accent'), var.c('accent-hover'));
+          }
+        }
+      }
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: var.$gap;
+      margin: var.$gap auto 0;
+
+      button {
+        @include mixins.btn(var.c('primary'), var.c('primary-hover'));
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@use 'variables' as var;
+@use 'mixins' as mixins;
+@use 'form-shared';
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: var.$gap;
+  background: transparent;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var.$radius * 2;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: var.$gap * 2;
+  width: 100%;
+  max-width: 360px;
+
+  .card-header {
+    text-align: center;
+    background: transparent;
+    color: var.c('text');
+    font-size: 1.75rem;
+    font-weight: 700;
+    padding: var.$gap;
+  }
+
+  .card-body {
+    padding: var.$gap;
+
+    form.shared-form {
+      background: transparent;
+      padding: 0;
+    }
+  }
+}

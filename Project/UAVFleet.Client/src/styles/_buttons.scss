@@ -1,0 +1,36 @@
+@use 'mixins' as mixins;
+@use 'variables' as var;
+
+.btn-primary {
+  @include mixins.btn(var.c('primary'), var.c('primary-hover'));
+}
+
+.btn-secondary {
+  @include mixins.btn(var.c('secondary'), var.c('secondary-hover'));
+}
+
+.btn-success {
+  @include mixins.btn(var.c('success'), var.c('success-hover'));
+}
+
+.btn-danger {
+  @include mixins.btn(var.c('danger'), var.c('danger-hover'));
+}
+
+.btn-accent {
+  @include mixins.btn(var.c('accent'), var.c('accent-hover'));
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-danger,
+.btn-accent,
+.btn-success {
+  i, .fa-icon, svg {
+    color: inherit !important;
+  }
+
+  span, strong {
+    color: inherit;
+  }
+}

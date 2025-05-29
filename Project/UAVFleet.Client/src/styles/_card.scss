@@ -1,0 +1,29 @@
+@use 'variables' as var;
+@use 'mixins' as mixins;
+
+.card {
+  @include mixins.card();
+
+  &-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: var.c('surface-alt');
+    color: var.c('text');
+    padding: var.$gap;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      margin: 0;
+    }
+
+    .add-button {
+      @include mixins.btn(var.c('primary'), var.c('primary-hover'));
+    }
+  }
+
+  &-body {
+    padding: var.$gap;
+  }
+}

@@ -1,0 +1,18 @@
+@use 'variables' as var;
+@use 'mixins' as mixins;
+
+form.shared-form {
+  @include mixins.form-container();
+
+  .actions {
+    justify-content: flex-end;
+
+    button.submit {
+      @include mixins.btn(var.c('primary'), var.c('primary-hover'));
+    }
+
+    button.cancel {
+      @include mixins.btn(var.c('accent'), var.c('accent-hover'));
+    }
+  }
+}

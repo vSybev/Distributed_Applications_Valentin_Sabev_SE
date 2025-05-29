@@ -1,0 +1,98 @@
+@use 'variables' as var;
+
+@mixin card($max-width: null) {
+  background: var.c('surface-alt');
+  border: 1px solid var.c('border');
+  border-radius: var.$radius;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: var.$gap;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  @if $max-width {
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+}
+
+@mixin btn($bg, $hover) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var.$gap * 0.25;
+  padding: var.$gap * 0.5 var.$gap;
+  border: none;
+  border-radius: var.$radius;
+  font-family: var.$font-family;
+  font-size: 1rem;
+  cursor: pointer;
+  background: $bg;
+  color: var.c('text');
+  transition: background 0.2s, transform 0.1s;
+
+  &:hover:not(:disabled) {
+    background: $hover;
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: 2px solid $hover;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin form-container($max-width: 600px) {
+  @include card($max-width);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var.$gap * 1.5;
+
+  label {
+    align-self: center;
+    font-weight: 600;
+    color: var.c('text');
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: var.$gap * 0.5;
+    background: var.c('field-bg');
+    color: var.c('text');
+    border: 1px solid var.c('border');
+    border-radius: var.$radius;
+    font-family: var.$font-family;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: var.c('primary');
+      outline: none;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 5rem;
+  }
+
+  .error, small {
+    grid-column: 2;
+    color: var.c('danger');
+    font-size: 0.875rem;
+    margin-top: var.$gap * 0.25;
+  }
+
+  .actions {
+    grid-column: span 2;
+    display: flex;
+    justify-content: flex-end;
+    gap: var.$gap;
+  }
+}

@@ -1,0 +1,53 @@
+@use 'variables' as var;
+@use 'mixins' as mixins;
+
+.home-wrapper {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+
+  .home-content {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    padding: var.$gap * 2;
+    height: 100vh;
+
+    .overlay {
+      @include mixins.card();
+      background: var.c('surface-alt');
+      padding: var.$gap * 2;
+      border-radius: var.$radius;
+      width: 30vw;
+      max-width: 350px;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var.c('text');
+
+      h1 {
+        font-size: 2rem;
+        margin-bottom: var.$gap;
+        color: var.c('text');
+        text-align: center;
+      }
+
+      p {
+        flex: 1;
+        margin-bottom: var.$gap;
+        color: var.c('text-secondary');
+      }
+
+      a.btn-primary {
+        @include mixins.btn(var.c('primary'), var.c('primary-hover'));
+        color: var.c('text');
+        align-self: center;
+      }
+    }
+  }
+}
